@@ -6,39 +6,48 @@ const textoResultado = document.querySelector(".texto-principal");
 
 const pergunta1 = [
     {
-    enunciado: "Pergunta 1",
+    enunciado: "Se você pudesse escolher ter qualquer poder, e utilizar no cotidiano. O que escolheria?",
     alternativas: [
-        "Alternativa 1", 
-        "Alternativa 2"
+        "Escolher um poder para fins próprios", 
+        "Escolher um poder para ajudar os outros"
      ]
 },
     {
-    enunciado: "Pergunta 2",
+    enunciado: "Se você tivesse a oportunidade de voltar no tempo pelo menos uma vez, qual seria sua prioridade?",
     alternativas: [
-        "Alternativa 1", 
-        "Alternativa 2"
+        "Corrigir um erro", 
+        "Reviver um momento"
      ]
 }, 
     {
-    enunciado: "Pergunta 3",
+    enunciado: "Se você pudesse passar um ano vivendo em qualquer lugar do mundo, o que mais influenciaria sua decisão?",
     alternativas: [
-        "Alternativa 1", 
-        "Alternativa 2"
+        "A cultura", 
+        "A qualidade de vida"
      ]
 },
     {
-    enunciado: "Pergunta 4",
+    enunciado: "Se vocẽ recebesse uma grande quantia de dinheiro sem precisar trabalhar por ela, qual seria sua primeira atitude?",
     alternativas: [
-        "Alternativa 1", 
-        "Alternativa 2"
+        "Investiria", 
+        "Realizaria sonhos"
      ]
 },
     {
-    enunciado: "Pergunta 5",
+    enunciado: "Se vocẽ pudesse deixar apenas uma mensagem positiva no mundo, qual seria seu principal objetivo?",
     alternativas: [
-        "Alternativa 1", 
-        "Alternativa 2"
+        "Inspirar confiança", 
+        "Criar soluções"
      ]
 }
+];
 
-]
+let atual = 0;
+let perguntaAtual;
+
+function mostraPergunta() {
+    perguntaAtual = perguntas[atual];
+    caixaPerguntas.textContent = perguntaAtual.enunciado;
+}
+
+mostraPergunta();
