@@ -4,18 +4,18 @@ const caixaAlternativas = document.querySelector(".caixa-alternativas");
 const caixaResultado = document.querySelector(".caixa-resultado");
 const textoResultado = document.querySelector(".texto-resultado");
 
-// Corrigido: Nome da variável alterado para 'perguntas'
+
 const perguntas = [
     {
         enunciado: "Se você pudesse escolher ter qualquer poder, e utilizar no cotidiano. O que escolheria?",
         alternativas: [
             {
-                texto: "Escolher um poder para fins próprios", // Corrigido: adicionada vírgula
-                afirmacao: "Você prioriza facilitar sua vida alcançar seus objetivos, mas suas escolhas podem impactar quem está ao seu redor"
+                texto: "Escolher um poder para fins próprios", 
+                afirmacao: "Você prioriza facilitar sua vida alcançar seus objetivos, mas suas escolhas podem impactar quem está ao seu redor."
             },
             {
                 texto: "Escolher um poder para ajudar os outros",
-                afirmacao: "Você prioriza o bem-estar das pessoas usando seu poder para fazer a diferença na comunidade"
+                afirmacao: "Você prioriza o bem-estar das pessoas usando seu poder para fazer a diferença na comunidade."
             }
         ]
     },
@@ -24,11 +24,11 @@ const perguntas = [
         alternativas: [
             {
                 texto: "Corrigir um erro",
-                afirmacao: "Você tende a enxergar o passado como uma oportunidade de aprendizado e mudanças"
+                afirmacao: "Você tende a enxergar o passado como uma oportunidade de aprendizado e mudanças."
             },
             {
                 texto: "Reviver um momento",
-                afirmacao: "Você demonstra valorizar as lembranças, as emoções e as experiências marcantes da vida"
+                afirmacao: "Você demonstra valorizar as lembranças, as emoções e as experiências marcantes da vida."
             }
         ]
     }, 
@@ -37,11 +37,11 @@ const perguntas = [
         alternativas: [
             {
                 texto: "A cultura",
-                afirmacao: "Costuma demonstrar interesse por novas experiências, tradições e aprendizado"
+                afirmacao: "Costuma demonstrar interesse por novas experiências, tradições e aprendizado."
             },
             {
                 texto: "A qualidade de vida",
-                afirmacao: "Tende a priorizar o conforto, bem-estar e estabilidade"
+                afirmacao: "Tende a priorizar o conforto, bem-estar e estabilidade."
             }
         ]
     },
@@ -50,11 +50,11 @@ const perguntas = [
         alternativas: [
             {
                 texto: "Investiria",
-                afirmacao: "Segure planejamento, visão de longo prazo e preocupação com o futuro"
+                afirmacao: "Segure planejamento, visão de longo prazo e preocupação com o futuro."
             },
             {
                 texto: "Realizaria sonhos",
-                afirmacao: "Demonstra valorização das experiências, desejos pessoais e aproveitamento do presente"
+                afirmacao: "Demonstra valorização das experiências, desejos pessoais e aproveitamento do presente."
             }
         ]
     },
@@ -63,42 +63,51 @@ const perguntas = [
         alternativas: [
             {
                 texto: "Inspirar confiança",
-                afirmacao: "Tende a acreditar no impacto das ideias, da motivação e do exemplo"
+                afirmacao: "Tende a acreditar no impacto das ideias, da motivação e do exemplo."
             },
             {
                 texto: "Criar soluções",
-                afirmacao: "Demonstrar como preferências por resultados práticos e mudanças concretas"
+                afirmacao: "Demonstrar como preferências por resultados práticos e mudanças concretas."
             }
         ]
     }
 ];
 
-let atual = 0;
+let atual = 0; 
 let perguntaAtual;
+let historiaFinal = "";
 
 function mostraPergunta() {
-    // Corrigido: Verifica se ainda há perguntas antes de carregar
-    if (atual >= perguntas.length) {
-        caixaPerguntas.textContent = "Fim do Quiz!";
-        caixaAlternativas.textContent = "";
+    if(atual >= perguntas.length){
+        mostraResultado();
         return;
     }
     perguntaAtual = perguntas[atual];
     caixaPerguntas.textContent = perguntaAtual.enunciado;
+    caixaAlternativas.textContent = "";
     mostraAlternativas();
 }
 
 function mostraAlternativas(){
-    caixaAlternativas.textContent = ""; // Corrigido: Limpa os botões anteriores
-    for(const alternativa of perguntaAtual.alternativas) {
-        const botaoAlternativa = document.createElement("button");
-        botaoAlternativa.textContent = alternativa.texto;
-        botaoAlternativa.addEventListener("click", function() {
-            atual++;
-            mostraPergunta();
-        });
-        caixaAlternativas.appendChild(botaoAlternativa);
+    for(const alternativa of perguntaAtual.alternativas){
+        const botaoAlternativas = document.createElement("button");
+        botaoAlternativas.textContent = alternativa.texto;
+        botaoAlternativas.addEventListener("click", () => respostaSelecionada(alternativa));
+        caixaAlternativas.appendChild(botaoAlternativas);
     }
+}
+
+function respostaSelecionada(opcaoSelecionada){
+    const afirmacoes = opcaoSelecionada.afirmacao;
+    historiaFinal += afirmacoes + " ";
+    atual++;
+    mostraPergunta();
+}
+
+function mostraResultado(){
+    caixaPerguntas.textContent = "Em 2049...";
+    textoResultado.textContent = historiaFinal;
+    caixaAlternativas.textContent = ""; 
 }
 
 mostraPergunta();
